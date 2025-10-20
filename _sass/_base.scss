@@ -5,7 +5,7 @@
 // Typography
 
 body {
-  font-family: 'Lato', "Times New Roman",sans-serif;
+  font-family: 'Lato', "Times New Roman", sans-serif;
 }
 
 p,
@@ -1064,6 +1064,19 @@ html.transition *:after {
 
 // Extra Markdown style (post Customization)
 .post {
+  font-family: 'Ginto Nord', 'Ginto', 'Inter', 'Segoe UI Variable', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400; /* Regular weight */
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ginto Nord', 'Ginto', 'Inter', 'Segoe UI Variable', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700; /* Bold weight for headings */
+  }
+  
+  p, li, span, div, blockquote {
+    font-family: 'Ginto Nord', 'Ginto', 'Inter', 'Segoe UI Variable', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400; /* Regular weight */
+  }
+
   .post-meta {
     color: var(--global-text-color-light);
     font-size: 0.875rem;

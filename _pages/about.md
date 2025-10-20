@@ -25,7 +25,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi 👋 I'm Navin Kumar M, a Machine Learning Engineer with over 2 years of experience building scalable, production-grade AI systems. My expertise ranges from developing credit risk models and large language models to designing robust training infrastructure and high-performance inference systems.
+Hi 👋 I'm Navin Kumar M, Machine Learning Engineer with over 2 years of experience building scalable, production-grade AI systems. My expertise ranges from developing credit risk models and large language models to designing robust training infrastructure and high-performance inference systems.
 
 I am passionate about leveraging AI to create impactful fintech and enterprise solutions, with a focus on advancing trustworthy and large-scale AI applications through pragmatic problem solving.
 

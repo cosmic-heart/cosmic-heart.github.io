@@ -191,11 +191,11 @@
       description:
         - Directed end-to-end ML projects including model development, deployment, and performance optimization in production, impacting credit scoring decisions for over 100,000 users
     
-    - title: Captain, School Cricket Team
-      institution: Velammal Hr.Sec School
-      year: 2014 - 2017
-      description:
-        - Led the team in inter-school tournaments; fostered teamwork and discipline, securing runner-up position in district-level finals
+    # - title: Captain, School Cricket Team
+    #   institution: Velammal Hr.Sec School
+    #   year: 2014 - 2017
+    #   description:
+    #     - Led the team in inter-school tournaments; fostered teamwork and discipline, securing runner-up position in district-level finals
 
 - title: Community Involvement
   type: time_table
