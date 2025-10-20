@@ -37,9 +37,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-feature-fetch-acceleration",
+        },{id: "post-feature-fetch-optimization",
         
-          title: "Feature Fetch Acceleration",
+          title: "Feature Fetch Optimization",
         
         description: "Know more about how I engineered a dramatic 8× speedup in feature fetching at Branch International through distributed and parallel system design and hands-on optimizations.",
         section: "Posts",
