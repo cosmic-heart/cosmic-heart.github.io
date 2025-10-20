@@ -93,8 +93,8 @@ ninja.data = [{
           description: "Malware Analysis using Deep Learning &amp; Machine Learning deployed on AWS cloud. ML &amp; DL algorithms was written in Python, Server Part written in node.js",
           section: "Projects",handler: () => {
               window.location.href = "/projects/malware-detection-web/";
-            },},{id: "projects-parallel-amp-distributed-ml-workspace",
-          title: 'Parallel &amp;amp; Distributed ML Workspace',
+            },},{id: "projects-parallel-and-distributed-ml-workspace",
+          title: 'Parallel and Distributed ML Workspace',
           description: "Documentation of Setting up Parallel &amp; Distributed ML Workspace in your systems. And to work seamlessly without error. Package to easily setup a environment in the group of systems",
           section: "Projects",handler: () => {
               window.location.href = "/projects/parallel-distributed/";
