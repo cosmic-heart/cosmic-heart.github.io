@@ -1,16 +1,20 @@
 ---
 layout: default
 ---
+{% if page.permalink == '/project/' %}
+<style type="text/css">
+  .container.mt-5 { max-width: 1400px !important; }
+</style>
+{% endif %}
 {% if page._styles %}
-  <!-- Page/Post style -->
-  <style type="text/css">
-    {{ page._styles }}
-  </style>
+<style type="text/css">
+  {{ page._styles }}
+</style>
 {% endif %}
 
 <div class="post">
   <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
+    <h1 class="post-title" style="font-size: 2rem; font-weight: 600; text-decoration: underline;">{{ page.title }}</h1>
     <p class="post-description">{{ page.description }}</p>
   </header>
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Parallel & Distributed ML Workspace
+title: Parallel and Distributed ML Workspace
 description: Documentation of Setting up Parallel & Distributed ML Workspace in your systems. And to work seamlessly without error. Package to easily setup a environment in the group of systems
 img: https://ik.imagekit.io/mnk/projects/image123.jpeg?updatedAt=1684169406615
 importance: 6

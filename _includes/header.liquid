@@ -1,11 +1,200 @@
 <header>
+  <style>
+    .navbar-brand.site-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      color: inherit;
+    }
+    .navbar-brand.site-title.active-home {
+      color: #2698ba !important;
+    }
+    @media (max-width: 576px) {
+      /* Hide site name when menu is open */
+      .navbar-collapse.show ~ .navbar-brand,
+      .navbar-collapse.collapsing ~ .navbar-brand {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .navbar-brand {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        z-index: 1;
+        max-width: 60%;
+        transition: opacity 0.3s ease;
+      }
+      .navbar-toggler {
+        z-index: 2;
+        position: relative;
+      }
+      /* Mobile menu improvements - Light theme */
+      .navbar-collapse {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        background: var(--global-bg-color, #ffffff);
+        padding: 1rem 0;
+        margin-top: 0.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+      /* Prevent dropdown from closing menu */
+      .navbar-collapse .dropdown-menu {
+        position: static !important;
+        float: none;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        display: none;
+      }
+      .navbar-collapse .dropdown-menu.show {
+        display: block !important;
+      }
+      .navbar-collapse .dropdown-item {
+        color: #333 !important;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        font-size: 0.95rem;
+      }
+      .navbar-collapse .dropdown-toggle::after {
+        margin-left: 0.5rem;
+      }
+      /* Keep dropdown open when shown */
+      .navbar-collapse .dropdown.show .dropdown-menu {
+        display: block !important;
+      }
+      .navbar-nav {
+        text-align: center;
+        width: 100%;
+      }
+      .navbar-nav .nav-item {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e8e8e8;
+      }
+      .navbar-nav .nav-item:last-child {
+        border-bottom: none;
+      }
+      .navbar-nav .nav-link {
+        font-size: 1.1rem;
+        padding: 0.75rem 1rem;
+        display: block;
+        color: #333 !important;
+      }
+      .navbar-nav .nav-item.active .nav-link {
+        color: #2698ba !important;
+        font-weight: 600;
+      }
+      /* Center search and theme toggle buttons */
+      .navbar-nav .nav-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .toggle-container {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0.5rem 0;
+      }
+      #search-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      #search-toggle .nav-link {
+        text-align: center;
+        width: auto;
+        margin: 0 auto;
+      }
+    }
+    /* Dark mode mobile menu */
+    @media (max-width: 576px) {
+      html[data-theme="dark"] .navbar-collapse,
+      html.dark .navbar-collapse {
+        background: var(--global-bg-color, #1c1c1d) !important;
+        box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+      }
+      html[data-theme="dark"] .navbar-nav .nav-item,
+      html.dark .navbar-nav .nav-item {
+        border-bottom-color: rgba(255,255,255,0.1);
+      }
+      html[data-theme="dark"] .navbar-nav .nav-link,
+      html.dark .navbar-nav .nav-link {
+        color: var(--global-text-color, #ffffff) !important;
+      }
+      html[data-theme="dark"] .navbar-nav .nav-item.active .nav-link,
+      html.dark .navbar-nav .nav-item.active .nav-link {
+        color: #2698ba !important;
+      }
+      html[data-theme="dark"] .navbar-collapse .dropdown-item,
+      html.dark .navbar-collapse .dropdown-item {
+        color: var(--global-text-color, #ffffff) !important;
+      }
+    }
+  </style>
+  <script>
+    // Fix dropdown behavior on mobile
+    (function() {
+      function setupMobileDropdowns() {
+        if (window.innerWidth <= 576) {
+          const dropdownToggles = document.querySelectorAll('.navbar-collapse .dropdown-toggle');
+          
+          dropdownToggles.forEach(toggle => {
+            // Remove Bootstrap's data-toggle to prevent default behavior
+            toggle.removeAttribute('data-toggle');
+            
+            // Remove existing listeners by cloning
+            const newToggle = toggle.cloneNode(true);
+            toggle.parentNode.replaceChild(newToggle, toggle);
+            
+            newToggle.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              e.stopImmediatePropagation();
+              
+              const parent = this.parentElement;
+              const menu = parent.querySelector('.dropdown-menu');
+              
+              // Close other dropdowns
+              document.querySelectorAll('.navbar-collapse .dropdown').forEach(dd => {
+                if (dd !== parent) {
+                  dd.classList.remove('show');
+                  const otherMenu = dd.querySelector('.dropdown-menu');
+                  if (otherMenu) otherMenu.classList.remove('show');
+                }
+              });
+              
+              // Toggle current dropdown
+              parent.classList.toggle('show');
+              if (menu) menu.classList.toggle('show');
+              
+              return false;
+            }, true);
+          });
+        }
+      }
+      
+      // Run immediately and after DOM load
+      setupMobileDropdowns();
+      document.addEventListener('DOMContentLoaded', setupMobileDropdowns);
+    })();
+  </script>
   <!-- Nav Bar -->
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
     <div class="container">
-      {% if page.permalink == '/' and site.enable_navbar_social %}
-        <!-- Social Icons -->
-        <div class="navbar-brand social">{% include social.liquid %}</div>
-      {% endif %}
+      <!-- Site Title/Logo -->
+      <a class="navbar-brand site-title {% if page.permalink == '/' %}active-home{% endif %}" href="{{ '/' | relative_url }}">
+        {% if site.title == 'blank' %}
+          {{ site.first_name }} {{ site.last_name }}
+        {% else %}
+          {{ site.title }}
+        {% endif %}
+      </a>
       <!-- Navbar Toggle -->
       <button
         class="navbar-toggler collapsed ml-auto"
@@ -23,21 +212,6 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav flex-nowrap">
-          {% for page in site.pages %}
-            {% if page.permalink == '/' %} {% assign about_title = page.title %} {% endif %}
-          {% endfor %}
-
-          <!-- About -->
-          <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
-            <a class="nav-link font-weight-bold" href="{{ '/' | relative_url }}">
-              {{- about_title }}
-              {% if page.permalink == '/' %}
-                <span class="sr-only">(current)</span>
-              {% endif %}
-            </a>
-          </li>
-        </ul>
         <ul class="navbar-nav ml-auto flex-nowrap">
           <!-- Other pages -->
           {% assign sorted_pages = site.pages | sort: 'nav_order' %}

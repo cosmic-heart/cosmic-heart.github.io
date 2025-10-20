@@ -13,6 +13,11 @@
       <meta http-equiv="refresh" content="3; url={{ redirect }}">
     {% endif %}
     {% include head.liquid %}
+    {% if page._styles %}
+    <style type="text/css">
+      {{ page._styles }}
+    </style>
+    {% endif %}
   </head>
 
   <!-- Body -->
