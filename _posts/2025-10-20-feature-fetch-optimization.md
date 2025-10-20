@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Feature Fetch Acceleration
+title: Feature Fetch Optimization
 date: 2025-10-20 20:00:00
 description: Know more about how I engineered a dramatic 8× speedup in feature fetching at Branch International through distributed and parallel system design and hands-on optimizations.
 tags: optimization distributed-system ray
