@@ -37,11 +37,11 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-feature-fetch-optimization",
+        },{id: "post-feature-fetch-acceleration",
         
-          title: "Feature Fetch Optimization",
+          title: "Feature Fetch Acceleration",
         
-        description: "Discover how I engineered a dramatic 8× speedup in feature fetching at Branch International through smart system design and hands-on optimizations. Dive into the actionable strategies and real-world impact behind this major performance boost!",
+        description: "Know more about how I engineered a dramatic 8× speedup in feature fetching at Branch International through distributed and parallel system design and hands-on optimizations.",
         section: "Posts",
         handler: () => {
           
@@ -62,7 +62,7 @@ ninja.data = [{
           section: "News",},{id: "news-started-my-internship-as-a-software-engineer-machine-learning-at-branch-international-developed-an-sms-cashflow-and-balance-classification-model-0-99-auc-3x-coverage-engineered-credit-bureau-features-6-auc-gain-and-achieved-99-5-data-consistency-with-thorough-qa-qc",
           title: 'Started my internship as a Software Engineer - Machine Learning at Branch International....',
           description: "",
-          section: "News",},{id: "news-graduated-from-vellore-institute-of-technology-with-a-b-tech-in-computer-science-amp-amp-engineering-spec-in-ai-amp-amp-ml-with-8-92-cgpa-honored-to-receive-the-best-final-year-project-award-for-my-work-on-an-on-premise-ai-learning-platform-relevant-coursework-machine-learning-deep-learning-data-structures-algorithms-and-software-engineering",
+          section: "News",},{id: "news-graduated-from-vellore-institute-of-technology-with-a-b-tech-in-computer-science-amp-amp-engineering-spec-in-ai-amp-amp-ml-with-8-92-cgpa-honored-to-receive-the-best-capstone-project-award-for-my-work-on-an-on-premise-ai-learning-platform-relevant-coursework-machine-learning-deep-learning-data-structures-algorithms-and-software-engineering",
           title: 'Graduated from Vellore Institute of Technology with a B.Tech in Computer Science &amp;amp;amp;...',
           description: "",
           section: "News",},{id: "news-excited-to-join-branch-international-as-a-software-engineer-machine-learning-b1-driving-an-neural-modeling-effort-to-extract-credit-signals-from-sms-based-financial-behavior-built-fully-automated-training-infrastructure-and-accelerated-feature-fetch-process-also-developed-a-credit-model-for-a-premium-user-segment-users",

@@ -19,9 +19,9 @@ function determineGiscusTheme() {
   let giscusAttributes = {
     src: "https://giscus.app/client.js",
     "data-repo": "cosmic-heart/cosmic-heart.github.io",
-    "data-repo-id": "R_kgDOQFdHhw",
+    "data-repo-id": "",
     "data-category": "General",
-    "data-category-id": "DIC_kwDOQFdHh84Cw2hi",
+    "data-category-id": "",
     "data-mapping": "title",
     "data-strict": "1",
     "data-reactions-enabled": "1",
