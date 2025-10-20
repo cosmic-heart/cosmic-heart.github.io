@@ -479,17 +479,25 @@ async for event in events_to_process:
     task.add_done_callback(lambda t: self._handle_response(t.result()))
 ```
 
-**Why This Speeds Things Up:**
+<b>Why This Speeds Things Up:</b>
 
-1. **Connection Reuse**: Instead of ~50ms overhead per request, we pay this cost only once per connection. A single connection can handle hundreds of requests.
-
-2. **DNS Caching**: DNS lookups (5-20ms each) are cached, saving time on every request after the first.
-
-3. **TCP Keep-Alive**: Connections stay open between requests, eliminating the need for TCP handshakes (3-way handshake = 1-2 RTTs).
-
-4. **TLS Session Resumption**: TLS sessions can be resumed, avoiding expensive cryptographic handshakes.
-
-For 50,000 requests, connection pooling can save **41+ minutes** (50ms × 50,000 requests = 2,500 seconds) of pure connection overhead.
+<ul>
+  <li>
+    <b>Connection Reuse</b>: By reusing existing connections, we significantly reduce the overhead that would otherwise be spent opening and closing connections for every request.
+  </li>
+  <li>
+    <b>DNS Caching</b>: DNS lookup results are cached, eliminating repeated network calls for domain resolution and speeding up subsequent requests.
+  </li>
+  <li>
+    <b>TCP Keep-Alive</b>: Keeping TCP connections open between requests avoids the repeated cost of establishing new connections, making the workflow more efficient.
+  </li>
+  <li>
+    <b>TLS Session Resumption</b>: Secure sessions can be resumed for subsequent requests, avoiding repeated cryptographic handshakes.
+  </li>
+</ul>
+<p>
+Connection pooling across large numbers of requests offers substantial time savings by minimizing overhead for each individual request.
+</p>
 
 ##### File Writer Actor
 
@@ -532,20 +540,4 @@ The `FileWriterActor` class manages writing fetched features to disk efficiently
 
 ### Conclusion
 
-Through careful analysis and architectural redesign, we built Fast Feature Fetch, a distributed, parallel system that achieves an **8× speedup** in feature fetching. What previously took 72 hours for 1M samples now completes in approximately 10 hours. It is production-ready and has been processing millions of feature fetches reliably. With additional optimizations (discussed in Future Work), we could potentially achieve another 2× improvement.
-
-##### Future Work
-
-While Fast Feature Fetch shows strong performance, there are a few more ways to improve it:
-
-**1. Migration to Compute-Optimized Instances**
-
-By reducing memory usage through batching and the new request flow, we can now use compute-optimized instances that provide more CPU resources for the same workload. This increases CPU capacity and supports higher throughput.
-
-#### 2. CPU-Based Autoscaling for Feature Service
-
-Consistently high CPU utilization now allows the Feature Service to autoscale based on real demand. We can scale up when needed and scale down during idle periods, reducing waste and improving efficiency.
-
-These changes make the system faster and more resource efficient.
-
-This makes Fast Feature Fetch not just faster, but dramatically more cost-efficient.
+Through careful analysis and architectural redesign, we built Fast Feature Fetch, a distributed, parallel system that achieves an **8× speedup** in feature fetching. What previously took 72 hours for 1M samples now completes in approximately 10 hours. It is production-ready and has been processing millions of feature fetches reliably.
