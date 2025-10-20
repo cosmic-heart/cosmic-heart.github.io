@@ -2,96 +2,213 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Navin Kumar M
+    - name: Address
+      value: Chennai, Tamil Nadu, India
+    - name: Phone
+      value: +91 9884285774
+    - name: Email
+      value: personal.mnk@gmail.com
+    - name: LinkedIn
+      value: <a href="https://www.linkedin.com/in/mnk-navin/">mnk-navin</a>
+    - name: GitHub
+      value: <a href="https://github.com/cosmic-heart">cosmic-heart</a>
     - name: Languages
-      value: English, German
+      value: English (proficient), Tamil (native)
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: B.Tech in Computer Science & Engineering
+      institution: Vellore Institute of Technology, Chennai
+      year: Sep 2020 - May 2024
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+        - "Specialization: Artificial Intelligence & Machine Learning"
+        - "CGPA: 8.92/10"
+        - "Achievement: Best final year project award, VIT University 2024, for developing an on-premise AI learning platform"
 
-- title: Experience
+- title: Work Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Machine Learning Engineer
+      institution: Branch International, Remote
+      year: Jun 2024 - Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
-      description:
-        - Description 1.
-        - Description 2.
+        - Pioneering the development of a neural network-based credit risk model from unstructured SMS data ensuring transparent and interpretable underwriting decisions aligned with regulatory standards
+        - Accelerated feature generation by integrating a Ray-based head–worker system and optimizing request throughput. Improved feature service performance by tuning thread pools, scaling workers, and refining SQL queries, resulting in an 8× decrease in feature fetch time
+        - Achieved a minimum of 2% delinquency rate by leading the development of a Credit Risk Model for premium segment users
+        - Reduced model training time and costs by 5x by building a fully automated pipeline using AWS SageMaker
+        - Ensured 99.5% data consistency through rigorous QA & QC testing of credit bureau data in multiple formats
+        - Refined training sample queries and introduced shorter window targets, enabling the use of recent data and improving data confidence & generalizability across all user segments
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
+- title: Internships
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: Machine Learning Engineer
+      institution: Branch International, Remote
+      year: Jan 2024 - May 2024
+      description:
+        - Developed cashflow and balance classification & extraction SMS model with AUC of 1.00, increasing coverage by 3x
+        - Engineered product-specific features from credit bureau data, resulting in a 6% improvement in model AUC
+        - Optimized processing of 100K+ files/min by building a parallel processing algorithm to convert historical data into Credit Information Reports
+    
+    - title: Research Intern
+      institution: Vellore Institute of Technology, Chennai
+      year: Nov 2023 - Apr 2024
+      description:
+        - Built a parallel and distributed computing workspace using Ray to accelerate ML training and inference
+        - Configured Linux & ML Frameworks on IBM PowerPC ppc64le architecture
+        - Architected and deployed an AI Learning Platform on distributed clusters to support hands-on learning for junior students
+    
+    - title: Machine Learning Engineer
+      institution: Gutsy Innovation, Remote
+      year: May 2023 - Jul 2024
+      description:
+        - Developed a real-time Face Detection & Recognition System using YOLOv7 & ArcFace
+        - Implemented the AI service on DeepStream SDK, with integration of Azure IoT Hub and Qdrant
 
-- title: Honors and Awards
+- title: Academic Projects
   type: time_table
   contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+    - title: AI Learning Platform
+      institution: Vellore Institute of Technology, Chennai
+      year: Nov 2023 - Apr 2024
+      description:
+        - "Role: Individual Contributor | Team Size: 1"
+        - Built an AI-Learning-Platform, an LLM-RAG pipeline that acts as a guide and resolves students' doubts
+        - Utilized vLLM for model inference and integrated Qdrant with Langchain for the RAG pipeline
+        - Developed a backend server using Django, storing user data in PostgreSQL, chat, and feedback in Cassandra
+    
+    - title: AI Malware System
+      institution: Vellore Institute of Technology, Chennai
+      year: Dec 2022 - Apr 2023
+      description:
+        - "Role: Project Lead | Team Size: 4"
+        - Developed a Cross-Platform Application that uploads files to an AI-driven backend for identifying malware with an Azure PowerBI dashboard to visualize the insights in real-time
+        - Employed CoAtNet Transformer model pre-trained on 2 million malware binaries, and conducted advanced feature analysis using LSTM & LightGBM based on logs from Cuckoo Sandbox and malware header information
+    
+    - title: Crime Activity Detection System
+      institution: Vellore Institute of Technology, Chennai
+      year: Dec 2022 - Apr 2023
+      description:
+        - "Role: Project Lead | Team Size: 4"
+        - Designed a real-time Surveillance AI system using a pre-trained SwinTransformer as an AutoEncoder for spatial feature extraction, integrated with LSTM decoders to model temporal anomalies in video streams from the UCF-Crime dataset
+        - Enhanced anomaly classification by combining SVM-based scoring with sequence-aware reconstruction loss to capture subtle spatiotemporal deviations
+        - Built and deployed a WebSocket-based interface for seamless real-time video ingestion and anomaly alerting, architected for edge deployment and multi-camera scalability
 
-- title: Academic Interests
+- title: Technical Skills
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Technical Expertise
       items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+        - Natural Language Processing (3 yrs)
+        - Linux (3yrs)
+        - MLOps (3 yrs)
+        - Credit & Fraud Modeling (2 yrs)
+        - Statistical & Tree-Based Models (2 yrs)
+        - Cloud Infrastructure (2 yrs)
+        - Large Language Models (2 yrs)
+        - Time-Series Forecasting (2 yrs)
+        - Computer Vision (1 yr)
+        - Information Security (1 yr)
+    
+    - title: Cloud & Infrastructure
       items:
-        - Description 1.
-        - Description 2.
+        - AWS (4 yrs)
+        - Git (4 yrs)
+        - Ray (3 yrs)
+        - Airflow (2 yrs)
+        - Docker (3 yrs)
+        - Kubernetes (1 yr)
+    
+    - title: Programming Languages
+      items:
+        - Python (6 yrs)
+        - C++ (4 yrs)
+        - SQL (2 yrs)
+        - Rust (1 yr)
+        - Go (1 yr)
+        - Cuda (1 yr)
+    
+    - title: Frameworks & Tools
+      items:
+        - PyTorch (4 yrs)
+        - Transformers (4 yrs)
+        - Pandas (3 yrs)
+        - Polars (3 yrs)
+        - Numpy (3 yrs)
+        - Django (3 yrs)
+        - FastAPI (3 yrs)
+        - Triton (1 yr)
+        - Power BI (1 yr)
+        - Matlab (1 yr)
+    
+    - title: Databases & Storage
+      items:
+        - PostgreSQL/RDS (2 yrs)
+        - Snowflake (2 yrs)
+        - Qdrant Vector DB (1 yr)
+        - DynamoDB (1 yr)
+
+- title: Certifications
+  type: time_table
+  contents:
+    - year: Jul 2023
+      items:
+        - <a href="https://www.coursera.org/account/accomplishments/certificate/DBLE2WMESHAL">Machine Learning in Production, Coursera – offered by DeepLearning.AI</a>
+    - year: May 2023
+      items:
+        - <a href="https://ik.imagekit.io/mnk/certificate/aws-certified-developer.jpg?updatedAt=1684166386766">AWS Certified Developer – Associate, Udemy</a>
+
+- title: Achievements & Awards
+  type: time_table
+  contents:
+    - year: Jan 2025
+      items:
+        - Runner, Branch Hackathon – For Building a GenAI Credit Risk Model
+    - year: Apr 2024
+      items:
+        - Winner, Best Final Year Project, VIT University, for developing an on-premise AI learning platform
+    - year: Jan 2024
+      items:
+        - Winner, Branch Hackathon – For developing an AI Agent to assist engineers with documentation
+    - year: Jul 2020
+      items:
+        - Top 1% in 10th & 12th Grade Board Exams
+    - year: Jan 2020
+      items:
+        - 98.92%ile in Jee Mains, conducted all over India
+    - year: 2014 - 2017
+      items:
+        - Represented Inter-Club Cricket Team as a Left-Arm Fast Bowler & Captain
+
+- title: Leadership Roles
+  type: time_table
+  contents:
+    - title: Project Lead, Machine Learning Initiatives
+      institution: Branch International
+      year: 2024 - Present
+      description:
+        - Directed end-to-end ML projects including model development, deployment, and performance optimization in production, impacting credit scoring decisions for over 100,000 users
+    
+    - title: Captain, School Cricket Team
+      institution: Velammal Hr.Sec School
+      year: 2014 - 2017
+      description:
+        - Led the team in inter-school tournaments; fostered teamwork and discipline, securing runner-up position in district-level finals
+
+- title: Community Involvement
+  type: time_table
+  contents:
+    - title: Public Relations Officer
+      institution: Rotaract Club, Vellore Institute Of Technology
+      year: Jul 2022 - Dec 2023
+      description:
+        - Spearheaded communication, outreach, and publicity efforts for the club
+        - Organized fundraising events, coordinated donation drives for underprivileged communities, and managed promotional campaigns to increase club visibility
+        - Played a key role in executing events such as blood donation camps, cleanliness drives, and educational workshops
 
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Hobbies:</u> Piano Enthusiast and Performer (2012 - Present)

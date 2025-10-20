@@ -1,14 +1,14 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - cosmic-heart
 
-repo_description_lines_max: 2
+repo_description_lines_max: 5
 
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+ - cosmic-heart/AI-Learning-Platform
+ - cosmic-heart/AI-Malware-System
+ - cosmic-heart/AI-Surveillance
+ - cosmic-heart/Anomaly-Crime-Activity-Detection
+ - cosmic-heart/Parallel-Distributed-ML-Workspace
+ - cosmic-heart/Benetech-Chart-Derendering
+ - cosmic-heart/Parallel-Distributed-ML-Workspace
+ 

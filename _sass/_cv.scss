@@ -2,6 +2,14 @@
  * CV shared styles
  *****************************/
 
+.cv .card-title {
+  font-size: 1.3rem;
+  font-weight: 700 !important;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  margin-bottom: 1rem;
+}
+
 div.container-link-button {
   margin-right: 0.5rem;
 }
@@ -42,6 +50,15 @@ a.btncv:hover {
  * CV TIME_TABLE styles
  *****************************/
 
+ul.list-group-flush .list-group-item {
+  padding: 1rem 1.25rem;
+}
+
+h5.title {
+  margin-bottom: 0.5rem;
+  margin-top: 0.25rem;
+}
+
 p.location {
   font-size: 0.7rem;
   white-space: nowrap;
@@ -65,11 +82,30 @@ i.icondepartment {
 }
 
 table.institution {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+td.institution {
+  font-size: 0.95rem;
 }
 
 td.department {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+}
+
+ul.items {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+ul.items li {
+  margin-bottom: 0.25rem;
+}
+
+span.item {
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 div.container-links {
