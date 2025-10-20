@@ -18,10 +18,10 @@ function determineGiscusTheme() {
 
   let giscusAttributes = {
     src: "https://giscus.app/client.js",
-    "data-repo": "cosmic-heart/home",
-    "data-repo-id": "",
-    "data-category": "Comments",
-    "data-category-id": "",
+    "data-repo": "cosmic-heart/cosmic-heart.github.io",
+    "data-repo-id": "R_kgDOQFdHhw",
+    "data-category": "General",
+    "data-category-id": "DIC_kwDOQFdHh84Cw2hi",
     "data-mapping": "title",
     "data-strict": "1",
     "data-reactions-enabled": "1",
