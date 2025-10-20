@@ -5,6 +5,7 @@
 title: Navin Kumar M # the website title (if blank, full name will be used instead)
 first_name: Navin Kumar
 last_name: M
+icon: prof_pic.jpeg
 contact_note: >
   Thanks for visiting my website!
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
@@ -57,7 +58,7 @@ max_width: 930px
 # see https://schema.org/docs/faq.html for more information
 serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: true # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+og_image: /assets/img/prof_pic.jpeg # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
