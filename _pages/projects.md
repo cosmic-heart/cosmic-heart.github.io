@@ -3,9 +3,9 @@ layout: page
 title: Projects
 permalink: /project/
 description:
-nav: true
+nav: false  # Temporarily hidden
 nav_order: 3
-display_categories: 
+display_categories:
 horizontal: false
 ---
 

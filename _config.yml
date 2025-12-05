@@ -5,11 +5,11 @@
 title: Navin Kumar M # the website title (if blank, full name will be used instead)
 first_name: Navin Kumar
 last_name: M
-icon: prof_pic.jpeg
+icon: prof_pic.png
 contact_note: >
   Thanks for visiting my website!
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A personal website for Navin Kumar M.
+  My Personal Website.
 
 url: https://cosmic-heart.github.io # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/. Leave blank for root
@@ -58,7 +58,7 @@ max_width: 930px
 # see https://schema.org/docs/faq.html for more information
 serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: true # Include Schema.org in the HTML head
-og_image: /assets/img/prof_pic.jpeg # The site-wide (default for all links) Open Graph preview image
+og_image: /assets/img/prof_pic.png # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
@@ -620,6 +620,7 @@ jekyll_get_json:
 
 jsonresume:
   - basics
+  - leadership
   - work
   - education
   - publications
