@@ -12,7 +12,7 @@ description: > # the ">" symbol means to ignore newlines until "footer_text:"
   My Personal Website.
 
 url: https://cosmic-heart.github.io # the base hostname & protocol for your site
-baseurl:  # the subpath of your site, e.g. /blog/. Leave blank for root
+baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: true # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
@@ -97,9 +97,9 @@ related_blog_posts:
 # Follow instructions on https://giscus.app/ to setup for your repo to fill out the information below.
 giscus:
   repo: cosmic-heart/cosmic-heart.github.io # <your-github-user-name>/<your-github-repo-name>
-  repo_id:  # leave empty or specify your repo_id (see https://giscus.app/)
+  repo_id: # leave empty or specify your repo_id (see https://giscus.app/)
   category: General # name of the category under which discussions will be created
-  category_id:  # leave empty or specify your category_id (see https://giscus.app/)
+  category_id: # leave empty or specify your category_id (see https://giscus.app/)
   mapping: title # identify discussions by post title
   strict: 1 # use strict identification mode
   reactions_enabled: 1 # enable (1) or disable (0) emoji reactions

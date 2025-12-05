@@ -51,7 +51,7 @@
         - Developed cashflow and balance classification & extraction SMS model with AUC of 1.00, increasing coverage by 3x
         - Engineered product-specific features from credit bureau data, resulting in a 6% improvement in model AUC
         - Optimized processing of 100K+ files/min by building a parallel processing algorithm to convert historical data into Credit Information Reports
-    
+
     - title: Research Intern
       institution: Vellore Institute of Technology, Chennai
       year: Nov 2023 - Apr 2024
@@ -59,7 +59,7 @@
         - Built a parallel and distributed computing workspace using Ray to accelerate ML training and inference
         - Configured Linux & ML Frameworks on IBM PowerPC ppc64le architecture
         - Architected and deployed an AI Learning Platform on distributed clusters to support hands-on learning for junior students
-    
+
     - title: Machine Learning Engineer
       institution: Gutsy Innovation, Remote
       year: May 2023 - Jul 2024
@@ -78,7 +78,7 @@
         - Built an AI-Learning-Platform, an LLM-RAG pipeline that acts as a guide and resolves students' doubts
         - Utilized vLLM for model inference and integrated Qdrant with Langchain for the RAG pipeline
         - Developed a backend server using Django, storing user data in PostgreSQL, chat, and feedback in Cassandra
-    
+
     - title: AI Malware System
       institution: Vellore Institute of Technology, Chennai
       year: Dec 2022 - Apr 2023
@@ -86,7 +86,7 @@
         - "Role: Project Lead | Team Size: 4"
         - Developed a Cross-Platform Application that uploads files to an AI-driven backend for identifying malware with an Azure PowerBI dashboard to visualize the insights in real-time
         - Employed CoAtNet Transformer model pre-trained on 2 million malware binaries, and conducted advanced feature analysis using LSTM & LightGBM based on logs from Cuckoo Sandbox and malware header information
-    
+
     - title: Crime Activity Detection System
       institution: Vellore Institute of Technology, Chennai
       year: Dec 2022 - Apr 2023
@@ -111,7 +111,7 @@
         - Time-Series Forecasting (2 yrs)
         - Computer Vision (1 yr)
         - Information Security (1 yr)
-    
+
     - title: Cloud & Infrastructure
       items:
         - AWS (4 yrs)
@@ -120,7 +120,7 @@
         - Airflow (2 yrs)
         - Docker (3 yrs)
         - Kubernetes (1 yr)
-    
+
     - title: Programming Languages
       items:
         - Python (6 yrs)
@@ -129,7 +129,7 @@
         - Rust (1 yr)
         - Go (1 yr)
         - Cuda (1 yr)
-    
+
     - title: Frameworks & Tools
       items:
         - PyTorch (4 yrs)
@@ -142,7 +142,7 @@
         - Triton (1 yr)
         - Power BI (1 yr)
         - Matlab (1 yr)
-    
+
     - title: Databases & Storage
       items:
         - PostgreSQL/RDS (2 yrs)
@@ -190,7 +190,7 @@
       year: 2024 - Present
       description:
         - Directed end-to-end ML projects including model development, deployment, and performance optimization in production, impacting credit scoring decisions for over 100,000 users
-    
+
     # - title: Captain, School Cricket Team
     #   institution: Velammal Hr.Sec School
     #   year: 2014 - 2017

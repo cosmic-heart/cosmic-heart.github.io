@@ -21,6 +21,7 @@ pagination:
 {% assign blog_description_size = site.blog_description | size %}
 
 {% if blog_description_size > 0 %}
+
   <div class="header-bar">
     <h2>{{ site.blog_description }}</h2>
   </div>

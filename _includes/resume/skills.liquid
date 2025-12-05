@@ -6,7 +6,8 @@
       </h6>
       <p class="mb-0" style="font-size: 0.95rem">
         {% for item in content.keywords %}
-          {{ item }}{% unless forloop.last %}, {% endunless %}
+          {{ item -}}
+          {%- unless forloop.last %}, {% endunless %}
         {% endfor %}
       </p>
     </div>

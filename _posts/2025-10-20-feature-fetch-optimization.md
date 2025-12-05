@@ -39,53 +39,52 @@ There are several critical inefficiencies in the DynamoDB Fetcher:
 
 1. **Incorrectly Assuming DynamoDB Fetcher is I/O Bound**
 
-    We initially set a default batch size of 100, assuming the DynamoDB fetcher was I/O bound. However, our profiling revealed it's actually **CPU bound**. The time spent creating keys and processing batch requests exceeds the time spent fetching items from DynamoDB itself. Even increasing the batch size to 1000 didn't improve performance proportionally. Through analysis, we discovered that a DynamoDB fetcher running on a single CPU core won't see performance improvements beyond a connection pool size of 3 (when using shared connections and async requests). With this optimal pool size of 3, a single processor can handle at most **8,000 requests per second**, note: this is after implementing all possible code optimizations.
+   We initially set a default batch size of 100, assuming the DynamoDB fetcher was I/O bound. However, our profiling revealed it's actually **CPU bound**. The time spent creating keys and processing batch requests exceeds the time spent fetching items from DynamoDB itself. Even increasing the batch size to 1000 didn't improve performance proportionally. Through analysis, we discovered that a DynamoDB fetcher running on a single CPU core won't see performance improvements beyond a connection pool size of 3 (when using shared connections and async requests). With this optimal pool size of 3, a single processor can handle at most **8,000 requests per second**, note: this is after implementing all possible code optimizations.
 
 2. **Creating DynamoDB Client for Each Feature Request**
 
-    ```python
-    @asynccontextmanager
-    async def _create_client():
-        async with self.session.create_client("dynamodb", ...) as client:
-            yield client
+   ```python
+   @asynccontextmanager
+   async def _create_client():
+       async with self.session.create_client("dynamodb", ...) as client:
+           yield client
 
-    async def get_feature_per_user(self):
-        async with _create_client() as client:
-            response = await client.get_item(...)
-    ```
+   async def get_feature_per_user(self):
+       async with _create_client() as client:
+           response = await client.get_item(...)
+   ```
 
-    In the code above, a new DynamoDB client is created for every single feature request. This is extremely inefficient, the overhead of creating and destroying clients for each request becomes a major bottleneck. The solution is to create the client once and reuse it across all requests. Additionally, we can share a single connection pool across all requests, further reducing overhead.
+   In the code above, a new DynamoDB client is created for every single feature request. This is extremely inefficient, the overhead of creating and destroying clients for each request becomes a major bottleneck. The solution is to create the client once and reuse it across all requests. Additionally, we can share a single connection pool across all requests, further reducing overhead.
 
 3. **Not Utilizing Single Request Read Capacity**
 
-    DynamoDB allows us to read up to 100 records and 25MB of data per request via `batch_get_item`. However, when fetching at the user level, we were only utilizing about less than 50% of this capacity per request. While this might seem like a minor optimization superficially, the reality is that creating requests and parsing responses takes significant CPU time. By batching multiple users' feature families into a single request (up to the 100-record or 25MB limit), we effectively reduce the number of request/response cycles. This reduces both the number of parsings and the number of in-flight requests. We implemented retry mechanisms to handle edge cases where data exceeds 25MB, though in practice, we've never hit these retry cases.
-
+   DynamoDB allows us to read up to 100 records and 25MB of data per request via `batch_get_item`. However, when fetching at the user level, we were only utilizing about less than 50% of this capacity per request. While this might seem like a minor optimization superficially, the reality is that creating requests and parsing responses takes significant CPU time. By batching multiple users' feature families into a single request (up to the 100-record or 25MB limit), we effectively reduce the number of request/response cycles. This reduces both the number of parsings and the number of in-flight requests. We implemented retry mechanisms to handle edge cases where data exceeds 25MB, though in practice, we've never hit these retry cases.
 
 ##### Inefficiencies in Feature Service Fetcher
 
 1. **Unnecessary Excessive Feature Requests**
 
-    In the old flow, we split each user's feature families into groups of 3 per request to the Feature Service. This approach made sense for **inference**, where we want to minimize latency for a single user by parallelizing requests. However, for **batch feature fetching**, the goal is different, we want to optimize throughput for all users in the batch, not minimize individual user latency.
+   In the old flow, we split each user's feature families into groups of 3 per request to the Feature Service. This approach made sense for **inference**, where we want to minimize latency for a single user by parallelizing requests. However, for **batch feature fetching**, the goal is different, we want to optimize throughput for all users in the batch, not minimize individual user latency.
 
-    Consider the math: With 45 feature families per user split into groups of 3, we send 15 requests per user. For 1,000 users, that's 15,000 requests. The Feature Service runs a synchronous Flask server where each request blocks a thread. The infrastructure is designed with 36 pods, each with 6 effective CPUs, 20 workers, and 150 threads to handle such a huge throughput. However, CPU utilization often hovered around 40%, most CPU cycles were spent either idle or managing the pool of thousands of concurrent requests rather than doing actual computation. Reducing these number of requests would allow the CPUs to spend more time on actual feature computation rather than request management overhead.
+   Consider the math: With 45 feature families per user split into groups of 3, we send 15 requests per user. For 1,000 users, that's 15,000 requests. The Feature Service runs a synchronous Flask server where each request blocks a thread. The infrastructure is designed with 36 pods, each with 6 effective CPUs, 20 workers, and 150 threads to handle such a huge throughput. However, CPU utilization often hovered around 40%, most CPU cycles were spent either idle or managing the pool of thousands of concurrent requests rather than doing actual computation. Reducing these number of requests would allow the CPUs to spend more time on actual feature computation rather than request management overhead.
 
 2. **Slow or I/O-Bound Feature Requests**
 
-    Some feature families are inherently slow. For example, event features require reading from an Amazon RDS database with around 100 billion rows, making this is extremely slow and completely I/O-bound. Similarly, for Kenya, we process a large volume of messages where regex operations (CPU-bound) take considerable time.
+   Some feature families are inherently slow. For example, event features require reading from an Amazon RDS database with around 100 billion rows, making this is extremely slow and completely I/O-bound. Similarly, for Kenya, we process a large volume of messages where regex operations (CPU-bound) take considerable time.
 
-    Here's the problem: If we include slow feature families in the same request as fast ones, the entire request takes longer as all feature families in a request is executed sequentially. To make it much worser, our feature service is synchronous nature. So if multiple I/O bound requests are in the same batch, they execute sequentially. This means batching all feature families together (as planned above) would force all slow requests to execute one after another, dramatically increasing the total time to fetch features for the batch.
+   Here's the problem: If we include slow feature families in the same request as fast ones, the entire request takes longer as all feature families in a request is executed sequentially. To make it much worser, our feature service is synchronous nature. So if multiple I/O bound requests are in the same batch, they execute sequentially. This means batching all feature families together (as planned above) would force all slow requests to execute one after another, dramatically increasing the total time to fetch features for the batch.
 
 3. **Synchronous Nature of Feature Service**
 
-    The Feature Service uses a synchronous Flask server with synchronous REST APIs. Each incoming request blocks a thread. For a typical user, approximately 30% of processing time is spent waiting for I/O from S3, RDS, and other sources.
+   The Feature Service uses a synchronous Flask server with synchronous REST APIs. Each incoming request blocks a thread. For a typical user, approximately 30% of processing time is spent waiting for I/O from S3, RDS, and other sources.
 
-    While converting the Feature Service to async would be relatively straightforward, it wouldn't solve the fundamental problem. It would just shift the bottleneck to the RDS database, which is already slow. Overwhelming RDS with more I/O requests would cause slowness, timeouts, and IOPS-related issues. Upgrading the database to a larger instance with more IOPS would cost thousands of dollars. Even then, the GP2 storage type we use has a hard limit of 64,000 IOPS, which is insufficient for the throughput we might have. Moving to faster storage (like Provisioned IOPS or io2) would require significant effort and cost. Given these constraints, we had to work with the synchronous nature of the Feature Service.
+   While converting the Feature Service to async would be relatively straightforward, it wouldn't solve the fundamental problem. It would just shift the bottleneck to the RDS database, which is already slow. Overwhelming RDS with more I/O requests would cause slowness, timeouts, and IOPS-related issues. Upgrading the database to a larger instance with more IOPS would cost thousands of dollars. Even then, the GP2 storage type we use has a hard limit of 64,000 IOPS, which is insufficient for the throughput we might have. Moving to faster storage (like Provisioned IOPS or io2) would require significant effort and cost. Given these constraints, we had to work with the synchronous nature of the Feature Service.
 
 ##### Inefficiencies in File Writer
 
 1. **Synchronous File Writer**
 
-    The File Writer must write to the local file system and then synchronize to S3 for remote backup. This process takes approximately 2-3 minutes for a chunk of 1,000-5,000 users. In the old single-threaded architecture, this meant all other components (DynamoDB Fetcher and Feature Service Fetcher) sat idle during writes. Even in a new parallel system, synchronous file writing would be a bottleneck if we scale up the DynamoDB fetcher and most records have cache hits, the write operations would struggle to keep up with the fetch rate.
+   The File Writer must write to the local file system and then synchronize to S3 for remote backup. This process takes approximately 2-3 minutes for a chunk of 1,000-5,000 users. In the old single-threaded architecture, this meant all other components (DynamoDB Fetcher and Feature Service Fetcher) sat idle during writes. Even in a new parallel system, synchronous file writing would be a bottleneck if we scale up the DynamoDB fetcher and most records have cache hits, the write operations would struggle to keep up with the fetch rate.
 
 ### New Architecture
 
@@ -119,6 +118,7 @@ All the above components are standalone actors that can be scaled horizontally b
 **Important note on scaling**: Simply increasing the number of actors won't automatically increase speed. The underlying services (DynamoDB, Feature Service, RDS database) must have adequate provisioning, sufficient pods, IOPS, and capacity, and must not be the limiting factor. Speed increases only when existing actors are already being used at full potential and the backend services can handle additional load.
 
 For example:
+
 - The **Main Actor** is lightweight, spending most of its time listening to worker actors and monitoring system health. Scaling it has no effect.
 - The **File Writer** is mostly I/O-bound and constrained by disk operations. Since it's already efficient with 1 CPU, scaling it horizontally doesn't help.
 - The **DynamoDB Fetcher** is CPU-bound when loaded with requests. Scaling it can increase speed, provided DynamoDB has sufficient read capacity provisioned.
@@ -128,6 +128,7 @@ Since all these are Python processes constrained by the GIL (Global Interpreter 
 **System Flow:**
 
 The actors work together in a producer-consumer pattern:
+
 1. The DynamoDB Processor and Feature Service Processor fetch features and place results in the writer queue.
 2. The File Writer consumes from the writer queue, buffers results, and writes to disk when the buffer is full.
 3. The cache file is updated with completed feature families, enabling resumability and incremental processing.
@@ -315,6 +316,7 @@ The Main Actor uses **concurrent execution** via `asyncio.gather()` to run three
 1. **Progress Tracking** (`_progress_stats_calculator`): Continuously polls worker actors to get progress statistics. When all queues are empty and all work is complete and writer signals all records are processed, it transitions the actor to the COMPLETED state, signaling that the feature fetch is done.
 
 2. **Record Processing** (`_execute_feature_fetch`): Iterates through input records asynchronously. For each record:
+
    - Checks if features are already cached (via cache file with key `(user_id, pitc_timestamp, feature_family_id)`) to support resumability
    - If not cached, determines the appropriate queue (DynamoDB input queue, Fast Feature Service queue, or Slow Feature Service queue) based on configuration
    - Enqueues the event for processing
@@ -393,13 +395,13 @@ class FeatureServiceProcessorActor(BaseServiceActor):
 
             if is_slow:
                 for feature_family in event.feature_families:
-                    await self.slow_semaphore.acquire() 
+                    await self.slow_semaphore.acquire()
                     task = asyncio.create_task(
                         self.fetch_features_from_feature_service(feature_family)
                     )
                     task.add_done_callback(lambda _: self.slow_semaphore.release())
             else:
-                await self.fast_semaphore.acquire()  
+                await self.fast_semaphore.acquire()
                 task = asyncio.create_task(
                     self.fetch_features_from_feature_service(event)
                 )
@@ -417,6 +419,7 @@ The semaphore pattern is crucial for controlling concurrency and preventing the 
 1. **What is a Semaphore?** A semaphore is a synchronization primitive with a counter. When you acquire a semaphore, the counter decreases; when you release it, the counter increases. If the counter reaches zero, further acquire attempts block until a release occurs.
 
 2. **Why Two Semaphores?** We use separate semaphores for fast and slow queues to control their concurrency independently:
+
    - **Fast Semaphore**: Limits concurrent batched requests (e.g., 1000 concurrent requests).
    - **Slow Semaphore**: Limits concurrent individual slow requests (e.g., 200 concurrent requests).
 
@@ -433,6 +436,7 @@ Using two separate queues in Fast Feature Fetch optimizes both efficiency and sc
 **Impact:**
 
 This approach delivered massive improvements:
+
 - **4× reduction** in feature fetch time per user
 - **CPU utilization increased to 100%** in Feature Service (previously ~40%)
 - **90% reduction** in total requests to Feature Service
@@ -447,6 +451,7 @@ HTTP connection overhead is significant when making thousands of requests. By de
 **Connection Pooling with aiohttp:**
 
 We use `aiohttp.TCPConnector` to create a connection pool that's shared across all requests. This means:
+
 - Connections are reused across multiple requests
 - DNS lookups are cached
 - TCP and TLS handshakes are amortized across many requests
@@ -506,6 +511,7 @@ The File Writer Actor is responsible for writing fetched features to files. It l
 **Challenges with Multiple Writers:**
 
 If we scale up the File Writer Actor (multiple instances), they could potentially write to the same file simultaneously, causing race conditions and data corruption. Our solution:
+
 1. **Per-Actor Files**: Each File Writer Actor writes to its own file, identified by `actor_id` and a `random_id` and file_counter to ensure uniqueness.
 2. **Buffering**: Features are buffered in memory and written in batches, reducing the number of I/O operations.
 3. **Async I/O**: All file operations are asynchronous, preventing the actor from blocking while waiting for disk I/O.
@@ -536,7 +542,6 @@ class FileWriterActor(BaseServiceActor):
 ```
 
 The `FileWriterActor` class manages writing fetched features to disk efficiently and safely in a distributed, high-throughput system. To avoid file corruption when scaling to multiple actors, each actor writes to its own unique output file, leveraging identifiers like `actor_id`, a random UUID, and a file counter for naming. Features are not immediately written; instead, they accumulate in an in-memory buffer until a specified size is reached, at which point they are written out in batches. This minimizes frequent disk I/O. All file operations are asynchronous, ensuring the actor remains highly responsive and does not block on potentially slow disk writes. This design supports smooth parallel processing, safeguards data integrity, and maximizes system throughput.
-
 
 ### Conclusion
 

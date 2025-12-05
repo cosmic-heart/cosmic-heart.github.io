@@ -5,7 +5,10 @@
       <h6 class="title font-weight-bold">
         <a href="{{ content.url | default: '#' }}">{{ content.name }}</a>
       </h6>
-      <p class="mb-0" style="font-size: 0.95rem">{{ content.issuer }} {{ content.date }}</p>
+      <p class="mb-0" style="font-size: 0.95rem">
+        {{ content.issuer }}
+        {{ content.date }}
+      </p>
     </div>
   {% endfor %}
 </div>

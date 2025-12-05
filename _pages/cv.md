@@ -5,7 +5,7 @@ title: Resume
 nav: true
 nav_order: 5
 cv_pdf: job_resume.pdf # you can also use external links here
-description: 
+description:
 toc:
   sidebar: left
 _styles: >

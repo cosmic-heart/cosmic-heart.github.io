@@ -257,37 +257,17 @@
     {
       "name": "Cloud & Infrastructure",
       "level": "",
-      "keywords": [
-        "AWS (4 yrs)",
-        "Git (4 yrs)",
-        "Ray (3 yrs)",
-        "Linux (3yrs)",
-        "Docker & Kubernetes (2 yr)",
-        "Airflow (1 yrs)"
-      ]
+      "keywords": ["AWS (4 yrs)", "Git (4 yrs)", "Ray (3 yrs)", "Linux (3yrs)", "Docker & Kubernetes (2 yr)", "Airflow (1 yrs)"]
     },
     {
       "name": "Programming Languages",
       "level": "",
-      "keywords": [
-        "Python (6 yrs)",
-        "C++ (4 yrs)",
-        "SQL (2 yrs)",
-        "Rust (1 yr)",
-        "Go (1 yr)",
-        "Cuda (1 yr)"
-      ]
+      "keywords": ["Python (6 yrs)", "C++ (4 yrs)", "SQL (2 yrs)", "Rust (1 yr)", "Go (1 yr)", "Cuda (1 yr)"]
     },
     {
       "name": "Frameworks & Tools",
       "level": "",
-      "keywords": [
-        "PyTorch (4 yrs)",
-        "Scikit (3 yrs)",
-        "Triton (1 yr)",
-        "Power BI (1 yr)",
-        "Matlab (1 yr)"
-      ]
+      "keywords": ["PyTorch (4 yrs)", "Scikit (3 yrs)", "Triton (1 yr)", "Power BI (1 yr)", "Matlab (1 yr)"]
     }
   ],
   "certificates": [
@@ -345,4 +325,3 @@
   ],
   "references": []
 }
-

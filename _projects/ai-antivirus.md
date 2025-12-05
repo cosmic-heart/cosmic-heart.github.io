@@ -15,16 +15,15 @@ We have created an AI antivirus system which identifies and removes malware thre
 
 ![alt text](https://ik.imagekit.io/mnk/post/AI-malware-system/image2.png?updatedAt=1683994479100)
 
-
 ## Framework
 
 The framework of the system is given. It consists of Front End user, Event Hub, SQL database, Blob storage, Power BI, and Visualization.
 
 ## Methodology
+
 ### Front End App
 
 ![alt text](https://ik.imagekit.io/mnk/post/AI-malware-system/image3.png?updatedAt=1683994479094)
-
 
 A Linux dashboard with the option to scan files.
 
@@ -40,9 +39,7 @@ Data can be processed in the cloud using a variety of Azure services after it ha
 
 Using different tools, such as Power BI, Azure Data Explorer, or customized web applications, the processed data can then be visualized and reported. Charts, graphs, dashboards, and other visual tools can be used in data visualization to improve user comprehension and interaction. Businesses can gather, process, and analyze data from their frontend applications by following these processes to obtain insights and make defensible decisions based on the data they collect.
 
-![alt text](
-https://ik.imagekit.io/mnk/post/AI-malware-system/image4.jpg?updatedAt=1683994478998)
-
+![alt text](https://ik.imagekit.io/mnk/post/AI-malware-system/image4.jpg?updatedAt=1683994478998)
 
 **Data streaming from Event Hub to Azure SQL Database**
 
@@ -60,8 +57,6 @@ To make sure the Stream Analytics job is operating properly, it is crucial to ke
 
 ![alt text](https://ik.imagekit.io/mnk/post/AI-malware-system/image5.png?updatedAt=1683994479060)
 
-
-
 **Data Streaming from Event Hub to Blob Storage**
 
 In the Azure portal, you must first create a Blob Storage account. The data sent from the Event Hub will be kept in this account. You can construct a Blob Storage container inside the account after it has been created. The data kept in Blob Storage will be arranged in this container.
@@ -75,7 +70,6 @@ Event Hub will begin gathering data and delivering it to Blob Storage as soon as
 Finally, you can use applications like Azure Stream Analytics or Azure Databricks to view the saved data. These tools can be used to analyze the data after reading the Avro files from Blob Storage. These procedures will show you how to store data from an Event Hub in Blob Storage so that it may be used for upcoming processing and analysis.
 
 ![alt text](https://ik.imagekit.io/mnk/post/AI-malware-system/image6.jpg?updatedAt=1683994479073)
-
 
 **Data Streaming from Azure SQL Database to Power BI and Visualization**
 
@@ -98,4 +92,3 @@ In conclusion, compared to conventional antivirus software, AI-powered antivirus
 ## Acknowledgements
 
 Special Thanks to Daniel Anantha Geethan, Tarun Kumar P, Arjun V K and Arjun P for their contribution in this project and article.
-

@@ -3,7 +3,7 @@ layout: page
 permalink: /repo/
 title: Repos
 description: My open source repositories
-nav: false  # Temporarily hidden
+nav: false # Temporarily hidden
 nav_order: 4
 ---
 

@@ -15,7 +15,7 @@
         opacity: 0;
         pointer-events: none;
       }
-      
+
       .navbar-brand {
         position: absolute;
         left: 50%;
@@ -39,7 +39,7 @@
         padding: 1rem 0;
         margin-top: 0.5rem;
         border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
       /* Prevent dropdown from closing menu */
       .navbar-collapse .dropdown-menu {
@@ -114,24 +114,24 @@
     }
     /* Dark mode mobile menu */
     @media (max-width: 576px) {
-      html[data-theme="dark"] .navbar-collapse,
+      html[data-theme='dark'] .navbar-collapse,
       html.dark .navbar-collapse {
         background: var(--global-bg-color, #1c1c1d) !important;
-        box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
       }
-      html[data-theme="dark"] .navbar-nav .nav-item,
+      html[data-theme='dark'] .navbar-nav .nav-item,
       html.dark .navbar-nav .nav-item {
-        border-bottom-color: rgba(255,255,255,0.1);
+        border-bottom-color: rgba(255, 255, 255, 0.1);
       }
-      html[data-theme="dark"] .navbar-nav .nav-link,
+      html[data-theme='dark'] .navbar-nav .nav-link,
       html.dark .navbar-nav .nav-link {
         color: var(--global-text-color, #ffffff) !important;
       }
-      html[data-theme="dark"] .navbar-nav .nav-item.active .nav-link,
+      html[data-theme='dark'] .navbar-nav .nav-item.active .nav-link,
       html.dark .navbar-nav .nav-item.active .nav-link {
         color: #2698ba !important;
       }
-      html[data-theme="dark"] .navbar-collapse .dropdown-item,
+      html[data-theme='dark'] .navbar-collapse .dropdown-item,
       html.dark .navbar-collapse .dropdown-item {
         color: var(--global-text-color, #ffffff) !important;
       }
@@ -139,46 +139,50 @@
   </style>
   <script>
     // Fix dropdown behavior on mobile
-    (function() {
+    (function () {
       function setupMobileDropdowns() {
         if (window.innerWidth <= 576) {
           const dropdownToggles = document.querySelectorAll('.navbar-collapse .dropdown-toggle');
-          
-          dropdownToggles.forEach(toggle => {
+
+          dropdownToggles.forEach((toggle) => {
             // Remove Bootstrap's data-toggle to prevent default behavior
             toggle.removeAttribute('data-toggle');
-            
+
             // Remove existing listeners by cloning
             const newToggle = toggle.cloneNode(true);
             toggle.parentNode.replaceChild(newToggle, toggle);
-            
-            newToggle.addEventListener('click', function(e) {
-              e.preventDefault();
-              e.stopPropagation();
-              e.stopImmediatePropagation();
-              
-              const parent = this.parentElement;
-              const menu = parent.querySelector('.dropdown-menu');
-              
-              // Close other dropdowns
-              document.querySelectorAll('.navbar-collapse .dropdown').forEach(dd => {
-                if (dd !== parent) {
-                  dd.classList.remove('show');
-                  const otherMenu = dd.querySelector('.dropdown-menu');
-                  if (otherMenu) otherMenu.classList.remove('show');
-                }
-              });
-              
-              // Toggle current dropdown
-              parent.classList.toggle('show');
-              if (menu) menu.classList.toggle('show');
-              
-              return false;
-            }, true);
+
+            newToggle.addEventListener(
+              'click',
+              function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+
+                const parent = this.parentElement;
+                const menu = parent.querySelector('.dropdown-menu');
+
+                // Close other dropdowns
+                document.querySelectorAll('.navbar-collapse .dropdown').forEach((dd) => {
+                  if (dd !== parent) {
+                    dd.classList.remove('show');
+                    const otherMenu = dd.querySelector('.dropdown-menu');
+                    if (otherMenu) otherMenu.classList.remove('show');
+                  }
+                });
+
+                // Toggle current dropdown
+                parent.classList.toggle('show');
+                if (menu) menu.classList.toggle('show');
+
+                return false;
+              },
+              true
+            );
           });
         }
       }
-      
+
       // Run immediately and after DOM load
       setupMobileDropdowns();
       document.addEventListener('DOMContentLoaded', setupMobileDropdowns);
@@ -190,7 +194,8 @@
       <!-- Site Title/Logo -->
       <a class="navbar-brand site-title {% if page.permalink == '/' %}active-home{% endif %}" href="{{ '/' | relative_url }}">
         {% if site.title == 'blank' %}
-          {{ site.first_name }} {{ site.last_name }}
+          {{ site.first_name }}
+          {{ site.last_name }}
         {% else %}
           {{ site.title }}
         {% endif %}

@@ -17,7 +17,7 @@ layout: default
   <article>
     <div class="row">
       {% if page.profile %}
-        <div class="col-md-4 col-12 mb-3 mb-md-0 text-center text-md-right">
+        <div class="col-md-4 col-12 mb-3 mb-md-0 text-center text-md-right" style="margin-top: 3rem;">
           {% if page.profile.image %}
             {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
             {% if page.profile.image_circular %}
@@ -67,7 +67,6 @@ layout: default
       </h2>
       {% include selected_papers.liquid %}
     {% endif %}
-
   </article>
 
   <!-- Social -->

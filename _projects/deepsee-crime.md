@@ -20,4 +20,3 @@ Our proposed method consists of four main components:
 4. **Sequence Classification**: Finally, we use an LSTM to classify the video sequence as anomalous or non-anomalous. The LSTM takes the output of the one-class SVM as input and learns to classify the video sequence based on the presence of anomalies. LSTMs are well-suited for modeling sequential data, making them an ideal choice for video anomaly detection and classifying the type of anomaly.
 
 Our proposed method is a novel approach for anomaly detection in video data using a combination of deep learning techniques. The method can be used in various real-world applications, such as surveillance and security systems, where anomaly detection is of utmost importance.
-

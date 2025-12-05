@@ -10,11 +10,11 @@ live_url: https://parallel-distributed-ml-workspace.readthedocs.io/en/latest/
 tags: [Pytorch, ray, pytorch lightning, python, linux, nvidia]
 ---
 
-
 # Welcome to Distributed-ML-Workspace
+
 ## Ray Distributed Made Easy
 
-Ray is an open source framework for building distributed and parallel applications. It was developed by the RISELab at UC Berkeley and is now maintained by the Ray team at Anyscale. 
+Ray is an open source framework for building distributed and parallel applications. It was developed by the RISELab at UC Berkeley and is now maintained by the Ray team at Anyscale.
 
 With Ray, you can easily scale your Python applications to run on a cluster of machines, using a simple and intuitive API. Ray provides a number of useful features, including distributed computing, parallel processing, and fault tolerance.
 
@@ -28,7 +28,6 @@ Check out the [usage](usage) section for further information, including how to [
 !!! note
 
     This Documentation is under active development.
-
 
 ## Features
 
@@ -48,14 +47,13 @@ To get started with Distributed Environment , you can follow these steps:
 
 **2.** View our Examples and run the scripts to get started with Ray Distributed Framework
 
-**3.** When got Stuck with the error, you can view our  and run the scripts to get started with Ray Distributed Framework
+**3.** When got Stuck with the error, you can view our and run the scripts to get started with Ray Distributed Framework
 
 !!! Warning
 
     Scrits are written for Specific Environment, so you may need to update the scripts according to your environment. Overall
 
-!!! Danger
-    1. Most of the problems, you may face while running the Ray Distributed Framework is due to the Firewall, so you have to configure or disable the firewall to run the Ray Distributed Framework across mupltiple Nodes.
+!!! Danger 1. Most of the problems, you may face while running the Ray Distributed Framework is due to the Firewall, so you have to configure or disable the firewall to run the Ray Distributed Framework across mupltiple Nodes.
 
 ## Distributed Environment
 
@@ -69,12 +67,10 @@ To get started with Distributed Environment , you can follow these steps:
 - **Pytorch Lightning 1.6.0**
 
 !!! Note
-    
+
         By default cuda gets installed with the installation of pytorch, but after the release of the new version of pytorch i.e `PyTorch 2.0` release, all the version is by default installs the pycuda for Pytorch, so you need to install the cuda version manually to run cuda programming for other needs.
         More information about the cuda version can be found [here](https://pytorch.org/get-started/previous-versions/)
 
-
 ## Conclusion
 
-Ray is a powerful framework for building distributed and parallel applications. It simplicity provides a *simple* and *intuitive* API. With our additional amount of documentation, you can easily set up and run your Ray Distributed Framework. We hope that you find our Distributed ML Workspace useful and that it helps you to build your own distributed applications.
-
+Ray is a powerful framework for building distributed and parallel applications. It simplicity provides a _simple_ and _intuitive_ API. With our additional amount of documentation, you can easily set up and run your Ray Distributed Framework. We hope that you find our Distributed ML Workspace useful and that it helps you to build your own distributed applications.
