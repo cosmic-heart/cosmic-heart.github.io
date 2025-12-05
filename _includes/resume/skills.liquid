@@ -1,33 +1,14 @@
-<div class="list-groups">
+<div class="card-text font-weight-light">
   {% for content in data[1] %}
-    <div class="list-group col-md-6" title="{{ content.level }}">
-      <table class="table-cv list-group-table">
-        <tbody>
-          <tr>
-            {% if content.icon %}
-              <td class="list-group-category-icon">
-                <i class="{{ content.icon }}"></i>
-              </td>
-            {% else %}
-              <td class="list-group-category-icon"></td>
-            {% endif %}
-            <!-- Calculate colspan number for category title -->
-            {% assign i = 1 %}
-            {% for item in content.items %}
-              {% assign i = i | plus: 1 %}
-            {% endfor %}
-            <td colspan="{{ i }}" class="list-group-category">{{ content.name }}</td>
-          </tr>
-          {% for item in content.keywords %}
-            <tr>
-              <td></td>
-              <td class="list-group-name">
-                <b>{{ item }}</b>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <div class="mb-3">
+      <h6 class="title font-weight-bold mb-1">
+        <a href="#" style="text-decoration: none; pointer-events: none; cursor: default;">{{ content.name }}:</a>
+      </h6>
+      <p class="mb-0" style="font-size: 0.95rem">
+        {% for item in content.keywords %}
+          {{ item }}{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </p>
     </div>
   {% endfor %}
 </div>
