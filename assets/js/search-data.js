@@ -55,7 +55,7 @@ ninja.data = [{
           title: 'CTO &amp;amp;amp; Co-Founder of a Stealth AI Startup Building an enterprise ML platform...',
           description: "",
           section: "News",},{id: "news-honored-to-receive-the-branch-international-hall-of-fame-award-best-performing-engineer-2025-awarded-for-designing-a-distributed-feature-fetch-system-that-improved-data-processing-by-8-10-and-dramatically-accelerated-branch-s-ml-training-and-experimentation-pipeline",
-          title: 'Honored to Receive the Branch International Hall of Fame Award - Best Performing...',
+          title: 'Honored to receive the Branch International Hall of Fame Award - Best Performing...',
           description: "",
           section: "News",},{id: "projects-ai-malware-system",
           title: 'AI Malware System',
